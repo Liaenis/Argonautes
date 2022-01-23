@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * @ORM\Entity(repositoryClass=ServiceArgonauteRepository::class)
  */
@@ -24,9 +25,12 @@ class ServiceArgonaute
      */
     private $ListeArgonautes;
 
-    public function __construct()
+    private $entityManager;
+
+    public function __construct(ManagerRegistry $doctrine)
     {
         $this->ListeArgonautes = new ArrayCollection();
+        $entityManager = $doctrine->getManager();
     }
 
     public function getId(): ?int
@@ -48,7 +52,6 @@ class ServiceArgonaute
             $this->ListeArgonautes[] = $listeArgonaute;
             $listeArgonaute->setServiceArgonaute($this);
         }
-
         return $this;
     }
 
@@ -60,7 +63,19 @@ class ServiceArgonaute
                 $listeArgonaute->setServiceArgonaute(null);
             }
         }
-
         return $this;
     }
+
+    public function addArgonaute ( Argonaute $paraArgonaute){
+        $this->ListeArgonautes->add($paraArgonaute);
+        $this->entityManager->persist(paraArgonaute);
+        $this->entityManager->flush;
+    } 
+
+    public function removeArgonaute(Argonaute $paraArgonaute){
+        $this->ListeArgonautes->removeElement($paraArgonaute);
+        $this->entityManager->remove($paraArgonaute);
+        $this->entityManager->flush;
+    }
+
 }
