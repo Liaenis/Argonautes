@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Entity;
+namespace App\Service;
 
+use App\Entity\Argonaute;
 use App\Repository\ServiceArgonauteRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 
@@ -25,12 +27,12 @@ class ServiceArgonaute
      */
     private $ListeArgonautes;
 
-    private $entityManager;
+    private EntityManagerInterface $entityManager;
 
-    public function __construct(ManagerRegistry $doctrine)
+    public function __construct(EntityManagerInterface $paraEntityManager)
     {
         $this->ListeArgonautes = new ArrayCollection();
-        $entityManager = $doctrine->getManager();
+        $this->entityManager = paraEntityManager;
     }
 
     public function getId(): ?int

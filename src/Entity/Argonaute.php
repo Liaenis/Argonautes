@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ArgonauteRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Form\FormTypeInterface;
 
 /**
  * @ORM\Entity(repositoryClass=ArgonauteRepository::class)
@@ -22,12 +23,6 @@ class Argonaute
      */
     private $name;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=ServiceArgonaute::class, inversedBy="ListeArgonautes")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $serviceArgonaute;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -41,18 +36,6 @@ class Argonaute
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getServiceArgonaute(): ?ServiceArgonaute
-    {
-        return $this->serviceArgonaute;
-    }
-
-    public function setServiceArgonaute(?ServiceArgonaute $serviceArgonaute): self
-    {
-        $this->serviceArgonaute = $serviceArgonaute;
 
         return $this;
     }
