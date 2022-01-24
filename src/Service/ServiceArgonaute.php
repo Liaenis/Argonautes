@@ -32,7 +32,7 @@ class ServiceArgonaute
     public function __construct(EntityManagerInterface $paraEntityManager)
     {
         $this->ListeArgonautes = new ArrayCollection();
-        $this->entityManager = paraEntityManager;
+        $this->entityManager = $paraEntityManager;
     }
 
     public function getId(): ?int
@@ -68,16 +68,16 @@ class ServiceArgonaute
         return $this;
     }
 
-    public function addArgonaute ( Argonaute $paraArgonaute){
+    public function addArgonaute( Argonaute $paraArgonaute){
         $this->ListeArgonautes->add($paraArgonaute);
-        $this->entityManager->persist(paraArgonaute);
-        $this->entityManager->flush;
+        $this->entityManager->persist($paraArgonaute);
+        $this->entityManager->flush();
     } 
 
     public function removeArgonaute(Argonaute $paraArgonaute){
         $this->ListeArgonautes->removeElement($paraArgonaute);
         $this->entityManager->remove($paraArgonaute);
-        $this->entityManager->flush;
+        $this->entityManager->flush();
     }
 
 }

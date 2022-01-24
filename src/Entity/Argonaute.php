@@ -33,9 +33,9 @@ class Argonaute
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(string $paraName): self
     {
-        $this->name = $name;
+        $this->name = $paraName;
 
         return $this;
     }

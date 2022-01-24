@@ -18,14 +18,16 @@ class Controller extends AbstractController
     /**
      * @Route("/", name="Page_principale")
      */
-    public function index(): Response
+    public function index(ServiceArgonaute $paraService): Response
     {
         $NouvelArgo = new Argonaute();
         //$formu = $this->createForm( Argonaute::class, $NouvelArgo); 
         $formu = $this->createFormBuilder($NouvelArgo)
-            ->add('name')
+            ->add('Name')
             ->add('Enregistrer', SubmitType::class, ['label' => 'Enregistrer'])
             ->getForm();
+        $NouvelArgo = $formu->getData();
+        $paraService->addArgonaute($NouvelArgo);
         return $this->render('/index.html.twig', [
             //'controller_name' => 'Controller',
             'formulaire' => $formu->createView(),
