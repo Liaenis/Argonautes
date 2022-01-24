@@ -13,7 +13,6 @@ class ArgoFormuType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('serviceArgonaute')
         ;
     }
 
