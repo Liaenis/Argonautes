@@ -31,6 +31,8 @@ class Controller extends AbstractController
         return $this->render('/index.html.twig', [
             //'controller_name' => 'Controller',
             'formulaire' => $formu->createView(),
-        ]);
+            'listeArgonaute' => $paraService->getListeArgonautes(),
+            ]
+        );
     }
 }

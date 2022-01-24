@@ -11,12 +11,20 @@
     <h1>Les Argonautes</h1>
 </div>
 <div class="Liste_Argonautes">
-    <h2>Liste des Argonautes</h2>
-
+        <h2>Membres de l'équipage</h2>
+        <ul>
+        {% for Argonaute in listeArgonaute %}
+        <li>{{Argonaute.name}}</li>
+        {% endfor %}
+        </ul>
 </div>
 <div class="formulaire">
     <h2>Enregistrer un nouvel Argonaute<h2>
     {{form(formulaire)}}
 </div>
+
+<footer>
+  <p>Réalisé par Jason en Anthestérion de l'an 515 avant JC</p>
+</footer>
 
 {% endblock %}
